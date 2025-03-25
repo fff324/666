@@ -1,7 +1,7 @@
 DOMAIN,www.msftconnecttest.com,no-solve
 DOMAIN,www.msftconnecttest.com,no-solve
 
-DOMAIN,dl.142753.xyz
+
 
 DOMAIN-SUFFIX,1ytnode.com
-SRC-IP-CIDR,172.20.0.0/24,no-resolve
+
