@@ -1,3 +1,6 @@
 DOMAIN,www.msftconnecttest.com,no-solve
-
+ruleset=DIRECT,[]DOMAIN,www.msftconnecttest.com,no-solve
+ruleset=DIRECT,[]DOMAIN,www.msftncsi.com,no-solve
+ruleset=✈️ ‍起飞,[]DOMAIN,bb.142753.xyz
+ruleset=✈️ ‍起飞,[]DOMAIN,dy.142753.xyz
 DOMAIN-SUFFIX,1ytnode.com
