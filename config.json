@@ -1,0 +1,1809 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "timestamp": true
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "0.0.0.0:9095",
+      "external_ui": "/etc/sing-box/ui",
+      "secret": "",
+      "external_ui_download_url": "https://gh-proxy.com/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
+      "external_ui_download_detour": "🎯 全球直连",
+      "default_mode": "rule"
+    },
+    "cache_file": {
+      "enabled": true,
+      "path": "/etc/sing-box/cache.db",
+      "store_fakeip": false
+    }
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns_direct",
+        "address": "223.5.5.5",
+        "address_strategy": "ipv4_only",
+        "strategy": "ipv4_only",
+        "detour": "🎯 全球直连"
+      },
+      {
+        "tag": "dns_proxy",
+        "address": "tls://8.8.8.8",
+        "address_strategy": "ipv4_only",
+        "strategy": "ipv4_only",
+        "detour": "🚀 节点选择"
+      }
+    ],
+    "rules": [
+      {
+        "outbound": "any",
+        "server": "dns_direct",
+        "disable_cache": true
+      },
+      {
+        "clash_mode": "Direct",
+        "server": "dns_direct"
+      },
+      {
+        "clash_mode": "Global",
+        "server": "dns_proxy"
+      },
+      {
+        "rule_set": "geosite-cn",
+        "action": "route",
+        "server": "dns_direct"
+      },
+      {
+        "rule_set": "geosite-geolocation-!cn",
+        "server": "dns_proxy"
+      }
+    ],
+    "final": "dns_proxy",
+    "strategy": "ipv4_only"
+  },
+  "inbounds": [
+    {
+      "tag": "tun-in",
+      "type": "tun",
+      "address": [
+        "172.19.0.1/30",
+        "fdfe:dcba:9876::1/126"
+      ],
+      "mtu": 9000,
+      "auto_route": true,
+      "auto_redirect": true
+    },
+    {
+      "tag": "mixed-in",
+      "type": "mixed",
+      "listen": "0.0.0.0",
+      "listen_port": 7893
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "🚀 节点选择",
+      "type": "selector",
+      "outbounds": [
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🐸 手动切换",
+        "♻️ 自动选择",
+        "🎯 全球直连"
+      ]
+    },
+    {
+      "tag": "📹 YouTube",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🐸 手动切换"
+      ]
+    },
+    {
+      "tag": "🤖 OpenAI",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🐸 手动切换"
+      ]
+    },
+    {
+      "tag": "🍀 Google",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🐸 手动切换"
+      ]
+    },
+    {
+      "tag": "👨‍💻 Github",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🐸 手动切换"
+      ]
+    },
+    {
+      "tag": "🪟 Microsoft",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🎯 全球直连"
+      ]
+    },
+    {
+      "tag": "🐬 OneDrive",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🐸 手动切换"
+      ]
+    },
+    {
+      "tag": "🎵 TikTok",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🐸 手动切换"
+      ]
+    },
+    {
+      "tag": "🎥 Netflix",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🐸 手动切换"
+      ]
+    },
+    {
+      "tag": "📲 Telegram",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "🔯 香港自动",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点",
+        "🐸 手动切换"
+      ]
+    },
+    {
+      "tag": "🍏 Apple",
+      "type": "selector",
+      "outbounds": [
+        "🎯 全球直连",
+        "🇭🇰 香港节点",
+        "🇯🇵 日本节点",
+        "🇺🇲 美国节点"
+      ]
+    },
+    {
+      "tag": "🐠 漏网之鱼",
+      "type": "selector",
+      "outbounds": [
+        "🚀 节点选择",
+        "🎯 全球直连"
+      ]
+    },
+    {
+      "tag": "🐸 手动切换",
+      "type": "selector",
+      "outbounds": [
+        "[trojan] 最新网址：1yunti.com",
+        "[trojan] 剩余流量：75.94 GB",
+        "[trojan] 距离下次重置剩余：7 天",
+        "[trojan] 套餐到期：2028-01-04",
+        "🇭🇰 [trojan] 香港 01",
+        "🇭🇰 [trojan] 香港 02",
+        "🇭🇰 [trojan] 香港 03",
+        "🇭🇰 [trojan] 香港 04",
+        "🇭🇰 [trojan] 香港 05",
+        "🇭🇰 [trojan] 香港 06",
+        "🇭🇰 [trojan] 香港 07",
+        "🇭🇰 [trojan] 香港 08",
+        "🇭🇰 [trojan] 香港 09",
+        "🇭🇰 [trojan] 香港 10",
+        "🇭🇰 [trojan] 香港 11",
+        "🇭🇰 [trojan] 香港 12",
+        "🇭🇰 [trojan] 香港 13",
+        "🇭🇰 [trojan] 香港 14",
+        "🇭🇰 [trojan] 香港 15",
+        "🇭🇰 [trojan] 香港 16",
+        "🇭🇰 [trojan] 香港 17",
+        "🇭🇰 [trojan] 香港 18",
+        "🇭🇰 [trojan] 香港 19",
+        "🇭🇰 [trojan] 香港 20",
+        "🇹🇼 [trojan] 台湾 01",
+        "🇹🇼 [trojan] 台湾 02",
+        "🇹🇼 [trojan] 台湾 03",
+        "🇹🇼 [trojan] 台湾 04",
+        "🇹🇼 [trojan] 台湾 05",
+        "🇹🇼 [trojan] 台湾 06",
+        "🇹🇼 [trojan] 台湾 07",
+        "🇹🇼 [trojan] 台湾 08",
+        "🇹🇼 [trojan] 台湾 09",
+        "🇹🇼 [trojan] 台湾 10",
+        "🇸🇬 [trojan] 新加坡 01",
+        "🇸🇬 [trojan] 新加坡 02",
+        "🇸🇬 [trojan] 新加坡 03",
+        "🇸🇬 [trojan] 新加坡 04",
+        "🇸🇬 [trojan] 新加坡 05",
+        "🇸🇬 [trojan] 新加坡 06",
+        "🇸🇬 [trojan] 新加坡 07",
+        "🇸🇬 [trojan] 新加坡 08",
+        "🇸🇬 [trojan] 新加坡 09",
+        "🇸🇬 [trojan] 新加坡 10",
+        "🇯🇵 [trojan] 日本 01",
+        "🇯🇵 [trojan] 日本 02",
+        "🇯🇵 [trojan] 日本 03",
+        "🇯🇵 [trojan] 日本 04",
+        "🇯🇵 [trojan] 日本 05",
+        "🇯🇵 [trojan] 日本 06",
+        "🇯🇵 [trojan] 日本 07",
+        "🇯🇵 [trojan] 日本 08",
+        "🇯🇵 [trojan] 日本 09",
+        "🇯🇵 [trojan] 日本 10",
+        "🇺🇸 [trojan] 美国 01",
+        "🇺🇸 [trojan] 美国 02",
+        "🇺🇸 [trojan] 美国 03",
+        "🇺🇸 [trojan] 美国 04",
+        "🇺🇸 [trojan] 美国 05",
+        "🇺🇸 [trojan] 美国 06",
+        "🇺🇸 [trojan] 美国 07",
+        "🇺🇸 [trojan] 美国 08",
+        "🇺🇸 [trojan] 美国 09",
+        "🇺🇸 [trojan] 美国 10",
+        "🇰🇷 [trojan] 韩国01",
+        "🇰🇷 [trojan] 韩国02",
+        "🇰🇷 [trojan] 韩国03",
+        "🇲🇾 [trojan] 马来西亚 01",
+        "🇲🇾 [trojan] 马来西亚 02",
+        "🇲🇾 [trojan] 马来西亚 03",
+        "🇲🇾 [trojan] 马来西亚 04",
+        "🇲🇾 [trojan] 马来西亚 05",
+        "🇬🇧 [trojan] 英国 01",
+        "🇬🇧 [trojan] 英国 02",
+        "🇬🇧 [trojan] 英国 03",
+        "🇬🇧 [trojan] 英国 04",
+        "🇬🇧 [trojan] 英国 05",
+        "🇹🇭 [trojan] 泰国 01",
+        "🇹🇭 [trojan] 泰国 02",
+        "🇻🇳 [trojan] 越南 01",
+        "🇻🇳 [trojan] 越南 02",
+        "🇵🇭 [trojan] 菲律宾 01",
+        "🇵🇭 [trojan] 菲律宾 02",
+        "🇮🇳 [trojan] 印度 01",
+        "🇹🇷 [trojan] 土耳其 01",
+        "🇹🇷 [trojan] 土耳其 02",
+        "🇦🇷 [trojan] 阿根廷 01",
+        "🇦🇷 [trojan] 阿根廷 02"
+      ]
+    },
+    {
+      "tag": "🇭🇰 香港节点",
+      "type": "selector",
+      "outbounds": [
+        "🇭🇰 [trojan] 香港 01",
+        "🇭🇰 [trojan] 香港 02",
+        "🇭🇰 [trojan] 香港 03",
+        "🇭🇰 [trojan] 香港 04",
+        "🇭🇰 [trojan] 香港 05",
+        "🇭🇰 [trojan] 香港 06",
+        "🇭🇰 [trojan] 香港 07",
+        "🇭🇰 [trojan] 香港 08",
+        "🇭🇰 [trojan] 香港 09",
+        "🇭🇰 [trojan] 香港 10",
+        "🇭🇰 [trojan] 香港 11",
+        "🇭🇰 [trojan] 香港 12",
+        "🇭🇰 [trojan] 香港 13",
+        "🇭🇰 [trojan] 香港 14",
+        "🇭🇰 [trojan] 香港 15",
+        "🇭🇰 [trojan] 香港 16",
+        "🇭🇰 [trojan] 香港 17",
+        "🇭🇰 [trojan] 香港 18",
+        "🇭🇰 [trojan] 香港 19",
+        "🇭🇰 [trojan] 香港 20"
+      ]
+    },
+    {
+      "tag": "🇯🇵 日本节点",
+      "type": "selector",
+      "outbounds": [
+        "🇯🇵 [trojan] 日本 01",
+        "🇯🇵 [trojan] 日本 02",
+        "🇯🇵 [trojan] 日本 03",
+        "🇯🇵 [trojan] 日本 04",
+        "🇯🇵 [trojan] 日本 05",
+        "🇯🇵 [trojan] 日本 06",
+        "🇯🇵 [trojan] 日本 07",
+        "🇯🇵 [trojan] 日本 08",
+        "🇯🇵 [trojan] 日本 09",
+        "🇯🇵 [trojan] 日本 10"
+      ]
+    },
+    {
+      "tag": "🇺🇲 美国节点",
+      "type": "selector",
+      "outbounds": [
+        "🇺🇸 [trojan] 美国 01",
+        "🇺🇸 [trojan] 美国 02",
+        "🇺🇸 [trojan] 美国 03",
+        "🇺🇸 [trojan] 美国 04",
+        "🇺🇸 [trojan] 美国 05",
+        "🇺🇸 [trojan] 美国 06",
+        "🇺🇸 [trojan] 美国 07",
+        "🇺🇸 [trojan] 美国 08",
+        "🇺🇸 [trojan] 美国 09",
+        "🇺🇸 [trojan] 美国 10"
+      ]
+    },
+    {
+      "tag": "🔯 香港自动",
+      "type": "urltest",
+      "outbounds": [
+        "🇭🇰 [trojan] 香港 01",
+        "🇭🇰 [trojan] 香港 02",
+        "🇭🇰 [trojan] 香港 03",
+        "🇭🇰 [trojan] 香港 04",
+        "🇭🇰 [trojan] 香港 05",
+        "🇭🇰 [trojan] 香港 06",
+        "🇭🇰 [trojan] 香港 07",
+        "🇭🇰 [trojan] 香港 08",
+        "🇭🇰 [trojan] 香港 09",
+        "🇭🇰 [trojan] 香港 10",
+        "🇭🇰 [trojan] 香港 11",
+        "🇭🇰 [trojan] 香港 12",
+        "🇭🇰 [trojan] 香港 13",
+        "🇭🇰 [trojan] 香港 14",
+        "🇭🇰 [trojan] 香港 15",
+        "🇭🇰 [trojan] 香港 16",
+        "🇭🇰 [trojan] 香港 17",
+        "🇭🇰 [trojan] 香港 18",
+        "🇭🇰 [trojan] 香港 19",
+        "🇭🇰 [trojan] 香港 20"
+      ],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50
+    },
+    {
+      "tag": "♻️ 自动选择",
+      "type": "urltest",
+      "outbounds": [
+        "[trojan] 最新网址：1yunti.com",
+        "[trojan] 套餐到期：2028-01-04",
+        "🇭🇰 [trojan] 香港 01",
+        "🇭🇰 [trojan] 香港 02",
+        "🇭🇰 [trojan] 香港 03",
+        "🇭🇰 [trojan] 香港 04",
+        "🇭🇰 [trojan] 香港 05",
+        "🇭🇰 [trojan] 香港 06",
+        "🇭🇰 [trojan] 香港 07",
+        "🇭🇰 [trojan] 香港 08",
+        "🇭🇰 [trojan] 香港 09",
+        "🇭🇰 [trojan] 香港 10",
+        "🇭🇰 [trojan] 香港 11",
+        "🇭🇰 [trojan] 香港 12",
+        "🇭🇰 [trojan] 香港 13",
+        "🇭🇰 [trojan] 香港 14",
+        "🇭🇰 [trojan] 香港 15",
+        "🇭🇰 [trojan] 香港 16",
+        "🇭🇰 [trojan] 香港 17",
+        "🇭🇰 [trojan] 香港 18",
+        "🇭🇰 [trojan] 香港 19",
+        "🇭🇰 [trojan] 香港 20",
+        "🇹🇼 [trojan] 台湾 01",
+        "🇹🇼 [trojan] 台湾 02",
+        "🇹🇼 [trojan] 台湾 03",
+        "🇹🇼 [trojan] 台湾 04",
+        "🇹🇼 [trojan] 台湾 05",
+        "🇹🇼 [trojan] 台湾 06",
+        "🇹🇼 [trojan] 台湾 07",
+        "🇹🇼 [trojan] 台湾 08",
+        "🇹🇼 [trojan] 台湾 09",
+        "🇹🇼 [trojan] 台湾 10",
+        "🇸🇬 [trojan] 新加坡 01",
+        "🇸🇬 [trojan] 新加坡 02",
+        "🇸🇬 [trojan] 新加坡 03",
+        "🇸🇬 [trojan] 新加坡 04",
+        "🇸🇬 [trojan] 新加坡 05",
+        "🇸🇬 [trojan] 新加坡 06",
+        "🇸🇬 [trojan] 新加坡 07",
+        "🇸🇬 [trojan] 新加坡 08",
+        "🇸🇬 [trojan] 新加坡 09",
+        "🇸🇬 [trojan] 新加坡 10",
+        "🇯🇵 [trojan] 日本 01",
+        "🇯🇵 [trojan] 日本 02",
+        "🇯🇵 [trojan] 日本 03",
+        "🇯🇵 [trojan] 日本 04",
+        "🇯🇵 [trojan] 日本 05",
+        "🇯🇵 [trojan] 日本 06",
+        "🇯🇵 [trojan] 日本 07",
+        "🇯🇵 [trojan] 日本 08",
+        "🇯🇵 [trojan] 日本 09",
+        "🇯🇵 [trojan] 日本 10",
+        "🇺🇸 [trojan] 美国 01",
+        "🇺🇸 [trojan] 美国 02",
+        "🇺🇸 [trojan] 美国 03",
+        "🇺🇸 [trojan] 美国 04",
+        "🇺🇸 [trojan] 美国 05",
+        "🇺🇸 [trojan] 美国 06",
+        "🇺🇸 [trojan] 美国 07",
+        "🇺🇸 [trojan] 美国 08",
+        "🇺🇸 [trojan] 美国 09",
+        "🇺🇸 [trojan] 美国 10",
+        "🇰🇷 [trojan] 韩国01",
+        "🇰🇷 [trojan] 韩国02",
+        "🇰🇷 [trojan] 韩国03",
+        "🇲🇾 [trojan] 马来西亚 01",
+        "🇲🇾 [trojan] 马来西亚 02",
+        "🇲🇾 [trojan] 马来西亚 03",
+        "🇲🇾 [trojan] 马来西亚 04",
+        "🇲🇾 [trojan] 马来西亚 05",
+        "🇬🇧 [trojan] 英国 01",
+        "🇬🇧 [trojan] 英国 02",
+        "🇬🇧 [trojan] 英国 03",
+        "🇬🇧 [trojan] 英国 04",
+        "🇬🇧 [trojan] 英国 05",
+        "🇹🇭 [trojan] 泰国 01",
+        "🇹🇭 [trojan] 泰国 02",
+        "🇻🇳 [trojan] 越南 01",
+        "🇻🇳 [trojan] 越南 02",
+        "🇵🇭 [trojan] 菲律宾 01",
+        "🇵🇭 [trojan] 菲律宾 02",
+        "🇮🇳 [trojan] 印度 01",
+        "🇹🇷 [trojan] 土耳其 01",
+        "🇹🇷 [trojan] 土耳其 02",
+        "🇦🇷 [trojan] 阿根廷 01",
+        "🇦🇷 [trojan] 阿根廷 02"
+      ],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50
+    },
+    {
+      "tag": "GLOBAL",
+      "type": "selector",
+      "outbounds": [
+        "[trojan] 最新网址：1yunti.com",
+        "[trojan] 剩余流量：75.94 GB",
+        "[trojan] 距离下次重置剩余：7 天",
+        "[trojan] 套餐到期：2028-01-04",
+        "🇭🇰 [trojan] 香港 01",
+        "🇭🇰 [trojan] 香港 02",
+        "🇭🇰 [trojan] 香港 03",
+        "🇭🇰 [trojan] 香港 04",
+        "🇭🇰 [trojan] 香港 05",
+        "🇭🇰 [trojan] 香港 06",
+        "🇭🇰 [trojan] 香港 07",
+        "🇭🇰 [trojan] 香港 08",
+        "🇭🇰 [trojan] 香港 09",
+        "🇭🇰 [trojan] 香港 10",
+        "🇭🇰 [trojan] 香港 11",
+        "🇭🇰 [trojan] 香港 12",
+        "🇭🇰 [trojan] 香港 13",
+        "🇭🇰 [trojan] 香港 14",
+        "🇭🇰 [trojan] 香港 15",
+        "🇭🇰 [trojan] 香港 16",
+        "🇭🇰 [trojan] 香港 17",
+        "🇭🇰 [trojan] 香港 18",
+        "🇭🇰 [trojan] 香港 19",
+        "🇭🇰 [trojan] 香港 20",
+        "🇹🇼 [trojan] 台湾 01",
+        "🇹🇼 [trojan] 台湾 02",
+        "🇹🇼 [trojan] 台湾 03",
+        "🇹🇼 [trojan] 台湾 04",
+        "🇹🇼 [trojan] 台湾 05",
+        "🇹🇼 [trojan] 台湾 06",
+        "🇹🇼 [trojan] 台湾 07",
+        "🇹🇼 [trojan] 台湾 08",
+        "🇹🇼 [trojan] 台湾 09",
+        "🇹🇼 [trojan] 台湾 10",
+        "🇸🇬 [trojan] 新加坡 01",
+        "🇸🇬 [trojan] 新加坡 02",
+        "🇸🇬 [trojan] 新加坡 03",
+        "🇸🇬 [trojan] 新加坡 04",
+        "🇸🇬 [trojan] 新加坡 05",
+        "🇸🇬 [trojan] 新加坡 06",
+        "🇸🇬 [trojan] 新加坡 07",
+        "🇸🇬 [trojan] 新加坡 08",
+        "🇸🇬 [trojan] 新加坡 09",
+        "🇸🇬 [trojan] 新加坡 10",
+        "🇯🇵 [trojan] 日本 01",
+        "🇯🇵 [trojan] 日本 02",
+        "🇯🇵 [trojan] 日本 03",
+        "🇯🇵 [trojan] 日本 04",
+        "🇯🇵 [trojan] 日本 05",
+        "🇯🇵 [trojan] 日本 06",
+        "🇯🇵 [trojan] 日本 07",
+        "🇯🇵 [trojan] 日本 08",
+        "🇯🇵 [trojan] 日本 09",
+        "🇯🇵 [trojan] 日本 10",
+        "🇺🇸 [trojan] 美国 01",
+        "🇺🇸 [trojan] 美国 02",
+        "🇺🇸 [trojan] 美国 03",
+        "🇺🇸 [trojan] 美国 04",
+        "🇺🇸 [trojan] 美国 05",
+        "🇺🇸 [trojan] 美国 06",
+        "🇺🇸 [trojan] 美国 07",
+        "🇺🇸 [trojan] 美国 08",
+        "🇺🇸 [trojan] 美国 09",
+        "🇺🇸 [trojan] 美国 10",
+        "🇰🇷 [trojan] 韩国01",
+        "🇰🇷 [trojan] 韩国02",
+        "🇰🇷 [trojan] 韩国03",
+        "🇲🇾 [trojan] 马来西亚 01",
+        "🇲🇾 [trojan] 马来西亚 02",
+        "🇲🇾 [trojan] 马来西亚 03",
+        "🇲🇾 [trojan] 马来西亚 04",
+        "🇲🇾 [trojan] 马来西亚 05",
+        "🇬🇧 [trojan] 英国 01",
+        "🇬🇧 [trojan] 英国 02",
+        "🇬🇧 [trojan] 英国 03",
+        "🇬🇧 [trojan] 英国 04",
+        "🇬🇧 [trojan] 英国 05",
+        "🇹🇭 [trojan] 泰国 01",
+        "🇹🇭 [trojan] 泰国 02",
+        "🇻🇳 [trojan] 越南 01",
+        "🇻🇳 [trojan] 越南 02",
+        "🇵🇭 [trojan] 菲律宾 01",
+        "🇵🇭 [trojan] 菲律宾 02",
+        "🇮🇳 [trojan] 印度 01",
+        "🇹🇷 [trojan] 土耳其 01",
+        "🇹🇷 [trojan] 土耳其 02",
+        "🇦🇷 [trojan] 阿根廷 01",
+        "🇦🇷 [trojan] 阿根廷 02"
+      ]
+    },
+    {
+      "tag": "🎯 全球直连",
+      "type": "direct"
+    },
+    {
+      "tag": "[trojan] 最新网址：1yunti.com",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56301,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "[trojan] 剩余流量：75.94 GB",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56301,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "[trojan] 距离下次重置剩余：7 天",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56301,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "[trojan] 套餐到期：2028-01-04",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56301,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 01",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56301,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 02",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56302,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 03",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56303,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 04",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56304,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 05",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56305,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 06",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56306,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 07",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56307,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 08",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56308,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 09",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56309,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 10",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56310,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 11",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56311,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 12",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56312,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 13",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56313,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 14",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56314,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 15",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56315,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 16",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56316,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 17",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56317,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 18",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56318,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 19",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56319,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 [trojan] 香港 20",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-hk.1ytnode.com",
+      "server_port": 56320,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇹🇼 [trojan] 台湾 01",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-tw.1ytnode.com",
+      "server_port": 56321,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇹🇼 [trojan] 台湾 02",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-tw.1ytnode.com",
+      "server_port": 56322,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇹🇼 [trojan] 台湾 03",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-tw.1ytnode.com",
+      "server_port": 56323,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇹🇼 [trojan] 台湾 04",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-tw.1ytnode.com",
+      "server_port": 56324,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇹🇼 [trojan] 台湾 05",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-tw.1ytnode.com",
+      "server_port": 56325,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇹🇼 [trojan] 台湾 06",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-tw.1ytnode.com",
+      "server_port": 56326,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇹🇼 [trojan] 台湾 07",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-tw.1ytnode.com",
+      "server_port": 56327,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇹🇼 [trojan] 台湾 08",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-tw.1ytnode.com",
+      "server_port": 56328,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇹🇼 [trojan] 台湾 09",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-tw.1ytnode.com",
+      "server_port": 56329,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇹🇼 [trojan] 台湾 10",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-tw.1ytnode.com",
+      "server_port": 56330,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇸🇬 [trojan] 新加坡 01",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-sg.1ytnode.com",
+      "server_port": 56331,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇸🇬 [trojan] 新加坡 02",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-sg.1ytnode.com",
+      "server_port": 56332,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇸🇬 [trojan] 新加坡 03",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-sg.1ytnode.com",
+      "server_port": 56333,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇸🇬 [trojan] 新加坡 04",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-sg.1ytnode.com",
+      "server_port": 56334,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇸🇬 [trojan] 新加坡 05",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-sg.1ytnode.com",
+      "server_port": 56335,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇸🇬 [trojan] 新加坡 06",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-sg.1ytnode.com",
+      "server_port": 56336,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇸🇬 [trojan] 新加坡 07",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-sg.1ytnode.com",
+      "server_port": 56337,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇸🇬 [trojan] 新加坡 08",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-sg.1ytnode.com",
+      "server_port": 56338,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇸🇬 [trojan] 新加坡 09",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-sg.1ytnode.com",
+      "server_port": 56339,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇸🇬 [trojan] 新加坡 10",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-sg.1ytnode.com",
+      "server_port": 56340,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇯🇵 [trojan] 日本 01",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-jp.1ytnode.com",
+      "server_port": 56341,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇯🇵 [trojan] 日本 02",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-jp.1ytnode.com",
+      "server_port": 56342,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇯🇵 [trojan] 日本 03",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-jp.1ytnode.com",
+      "server_port": 56343,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇯🇵 [trojan] 日本 04",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-jp.1ytnode.com",
+      "server_port": 56344,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇯🇵 [trojan] 日本 05",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-jp.1ytnode.com",
+      "server_port": 56345,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇯🇵 [trojan] 日本 06",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-jp.1ytnode.com",
+      "server_port": 56346,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇯🇵 [trojan] 日本 07",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-jp.1ytnode.com",
+      "server_port": 56347,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇯🇵 [trojan] 日本 08",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-jp.1ytnode.com",
+      "server_port": 56348,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇯🇵 [trojan] 日本 09",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-jp.1ytnode.com",
+      "server_port": 56349,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇯🇵 [trojan] 日本 10",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-jp.1ytnode.com",
+      "server_port": 56350,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇺🇸 [trojan] 美国 01",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-us.1ytnode.com",
+      "server_port": 56351,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇺🇸 [trojan] 美国 02",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-us.1ytnode.com",
+      "server_port": 56352,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇺🇸 [trojan] 美国 03",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-us.1ytnode.com",
+      "server_port": 56353,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇺🇸 [trojan] 美国 04",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-us.1ytnode.com",
+      "server_port": 56354,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇺🇸 [trojan] 美国 05",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-us.1ytnode.com",
+      "server_port": 56355,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇺🇸 [trojan] 美国 06",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-us.1ytnode.com",
+      "server_port": 56356,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇺🇸 [trojan] 美国 07",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-us.1ytnode.com",
+      "server_port": 56357,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇺🇸 [trojan] 美国 08",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-us.1ytnode.com",
+      "server_port": 56358,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇺🇸 [trojan] 美国 09",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-us.1ytnode.com",
+      "server_port": 56359,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇺🇸 [trojan] 美国 10",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-us.1ytnode.com",
+      "server_port": 56360,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇰🇷 [trojan] 韩国01",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-kr.1ytnode.com",
+      "server_port": 56361,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇰🇷 [trojan] 韩国02",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-kr.1ytnode.com",
+      "server_port": 56362,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇰🇷 [trojan] 韩国03",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-kr.1ytnode.com",
+      "server_port": 56363,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇲🇾 [trojan] 马来西亚 01",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-my.1ytnode.com",
+      "server_port": 56366,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇲🇾 [trojan] 马来西亚 02",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-my.1ytnode.com",
+      "server_port": 56367,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇲🇾 [trojan] 马来西亚 03",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-my.1ytnode.com",
+      "server_port": 56368,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇲🇾 [trojan] 马来西亚 04",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-my.1ytnode.com",
+      "server_port": 56369,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇲🇾 [trojan] 马来西亚 05",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-my.1ytnode.com",
+      "server_port": 56370,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇬🇧 [trojan] 英国 01",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-uk.1ytnode.com",
+      "server_port": 56371,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇬🇧 [trojan] 英国 02",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-uk.1ytnode.com",
+      "server_port": 56372,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇬🇧 [trojan] 英国 03",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-uk.1ytnode.com",
+      "server_port": 56373,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇬🇧 [trojan] 英国 04",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-uk.1ytnode.com",
+      "server_port": 56374,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇬🇧 [trojan] 英国 05",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-uk.1ytnode.com",
+      "server_port": 56375,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇹🇭 [trojan] 泰国 01",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-th.1ytnode.com",
+      "server_port": 56376,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇹🇭 [trojan] 泰国 02",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-th.1ytnode.com",
+      "server_port": 56377,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇻🇳 [trojan] 越南 01",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-vn.1ytnode.com",
+      "server_port": 56378,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇻🇳 [trojan] 越南 02",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-vn.1ytnode.com",
+      "server_port": 56379,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇵🇭 [trojan] 菲律宾 01",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-ph.1ytnode.com",
+      "server_port": 56380,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇵🇭 [trojan] 菲律宾 02",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-ph.1ytnode.com",
+      "server_port": 56381,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇮🇳 [trojan] 印度 01",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-in.1ytnode.com",
+      "server_port": 56382,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇹🇷 [trojan] 土耳其 01",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-tr.1ytnode.com",
+      "server_port": 56384,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇹🇷 [trojan] 土耳其 02",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-tr.1ytnode.com",
+      "server_port": 56385,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇦🇷 [trojan] 阿根廷 01",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-ar.1ytnode.com",
+      "server_port": 56388,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇦🇷 [trojan] 阿根廷 02",
+      "type": "trojan",
+      "server": "ip0axvlbbsu02k7-ar.1ytnode.com",
+      "server_port": 56389,
+      "password": "0a74b94e-a06b-4438-b69d-6cfe75457ba9",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    }
+  ],
+  "route": {
+    "auto_detect_interface": true,
+    "final": "🐠 漏网之鱼",
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "protocol": "dns",
+        "action": "hijack-dns"
+      },
+      {
+        "clash_mode": "direct",
+        "outbound": "🎯 全球直连"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "GLOBAL"
+      },
+      {
+        "domain": [
+          "clash.razord.top",
+          "yacd.metacubex.one",
+          "yacd.haishan.me",
+          "d.metacubex.one"
+        ],
+        "outbound": "🎯 全球直连"
+      },
+      {
+        "rule_set": "geosite-private",
+        "outbound": "🎯 全球直连"
+      },
+      {
+        "rule_set": "geosite-chat",
+        "outbound": "🤖 OpenAI"
+      },
+      {
+        "rule_set": "geosite-youtube",
+        "outbound": "📹 YouTube"
+      },
+      {
+        "rule_set": "geosite-github",
+        "outbound": "👨‍💻 Github"
+      },
+      {
+        "rule_set": [
+          "geosite-google",
+          "geoip-google"
+        ],
+        "outbound": "🍀 Google"
+      },
+      {
+        "rule_set": [
+          "geosite-telegram",
+          "geoip-telegram"
+        ],
+        "outbound": "📲 Telegram"
+      },
+      {
+        "rule_set": "geosite-tiktok",
+        "outbound": "🎵 TikTok"
+      },
+      {
+        "rule_set": [
+          "geosite-netflix",
+          "geoip-netflix"
+        ],
+        "outbound": "🎥 Netflix"
+      },
+      {
+        "rule_set": [
+          "geosite-apple",
+          "geoip-apple"
+        ],
+        "outbound": "🍏 Apple"
+      },
+      {
+        "rule_set": "geosite-onedrive",
+        "outbound": "🐬 OneDrive"
+      },
+      {
+        "rule_set": "geosite-microsoft",
+        "outbound": "🪟 Microsoft"
+      },
+      {
+        "rule_set": "geosite-geolocation-!cn",
+        "outbound": "🚀 节点选择"
+      },
+      {
+        "rule_set": [
+          "geoip-cn",
+          "geosite-cn"
+        ],
+        "outbound": "🎯 全球直连"
+      }
+    ],
+    "rule_set": [
+      {
+        "tag": "geosite-chat",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-chat-!cn.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-youtube",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-google",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/google.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-github",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/github.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-telegram",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/telegram.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-tiktok",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/tiktok.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-netflix",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/netflix.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-apple",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/apple.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-microsoft",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/microsoft.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-onedrive",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/onedrive.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-geolocation-!cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geosite-private",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geoip-google",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geoip-telegram",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geoip-netflix",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/netflix.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geoip-apple",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geoip/apple.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geoip-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs",
+        "download_detour": "🎯 全球直连"
+      },
+      {
+        "tag": "geoip-private",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/private.srs",
+        "download_detour": "🎯 全球直连"
+      }
+    ]
+  }
+}
