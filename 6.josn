@@ -400,8 +400,7 @@
         "outbound": "国内流量",
         "source_ip_cidr": [
           "172.20.0.0/24"
-        ],
-        "resolve_strategy": "ipv4_only"
+        ]
       },
       {
         "rule_set": [
