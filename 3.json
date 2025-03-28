@@ -271,9 +271,7 @@
 }, {
 	"tag": "♻️ 自动选择",
 	"type": "urltest",
-	"outbounds": [
-		"{all}"
-	],
+"outbounds": ["{all}"],
 	"filter": [{
 		"action": "exclude",
 		"keywords": [
@@ -286,9 +284,7 @@
 }, {
 	"tag": "⚡ 自动选择一云",
 	"type": "urltest",
-	"outbounds": [
-		"{all}"
-	],
+"outbounds": ["{all}"],
 	"filter": [{
 		"action": "include",
 		"keywords": [
@@ -301,9 +297,7 @@
 }, {
 	"tag": "GLOBAL",
 	"type": "selector",
-	"outbounds": [
-		"{all}"
-	]
+"outbounds": ["{all}"]
 }, {
 	"tag": "block",
 	"type": "block"
