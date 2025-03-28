@@ -81,15 +81,15 @@
 		"strict_route": false
 	}],
 
-	"outbounds": [{
-			{
-				"type": "direct",
-				"tag": "DIRECT"
-			},
-			{
-				"type": "block",
-				"tag": "REJECT"
-			},
+   "outbounds": [
+       {
+           "type": "direct",
+           "tag": "DIRECT"
+       },
+       {
+           "type": "block",
+           "tag": "REJECT"
+       },
 			{
 				"type": "dns",
 				"tag": "dns-out"
