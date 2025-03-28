@@ -134,7 +134,7 @@
 		{
 			"tag": "🛑 广告拦截",
 			"type": "selector",
-			"outbounds": ["REJECT", "🎯 全球直连", "🚀 节点选择"]
+			"outbounds": ["block", "🎯 全球直连", "🚀 节点选择"]
 		},
 		{
 			"tag": "🍏 Apple",
@@ -210,7 +210,10 @@
 			"type": "selector",
 			"outbounds": ["{all}"]
 		},
-	   {"type":"block","tag":"REJECT"},
+    {
+      "tag": "block",
+      "type": "block"
+    },
 		{
 			"tag": "🎯 全球直连",
 			"type": "direct"
