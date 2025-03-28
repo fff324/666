@@ -379,36 +379,11 @@
     "auto_detect_interface": true,
     "final": "漏网之鱼",
     "rules": [
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "port": 53
-          },
-          {
-            "protocol": "dns"
-          }
-        ],
-        "outbound": "dns-out"
-      },
-      {
-        "clash_mode": "direct",
-        "outbound": "国内流量"
-      },
-      {
-        "clash_mode": "global",
-        "outbound": "GLOBAL"
-      },
-      {
-        "domain": [
-          "clash.razord.top",
-          "yacd.metacubex.one",
-          "yacd.haishan.me",
-          "d.metacubex.one"
-        ],
-        "outbound": "国内流量"
-      },
+     {"action": "sniff"},
+     {"protocol": "dns", "action": "hijack-dns"},
+     {"clash_mode": "direct", "outbound": "国内流量"},
+     {"clash_mode": "global", "outbound": "GLOBAL"},
+     {"domain": ["clash.razord.top", "yacd.metacubex.one", "yacd.haishan.me", "d.metacubex.one"], "outbound": "国内流量"},
       {
         "outbound": "国内流量",
         "domain": [
