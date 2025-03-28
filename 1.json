@@ -6,34 +6,83 @@
   },
   
   "experimental": {
-  "cache_file": {
-    "enabled": true
+    "cache_file": {
+      "enabled": true,
+      "store_rdrc": true
+    },
+    "clash_api": {
+      "default_mode": "Enhanced"
     }
   },
   
-  "dns": {
-    "servers": [
-      {"tag": "proxyDns", "address": "https://dns.google/dns-query", "address_resolver": "defaultDns", "address_strategy": "ipv4_only", "detour": "🚀 节点选择"},
-      {"tag": "localDns", "address": "223.5.5.5", "address_resolver": "defaultDns", "address_strategy": "ipv4_only", "detour": "🎯 全球直连"},
-      {"tag": "defaultDns", "address": "223.5.5.5", "address_strategy": "ipv4_only", "detour": "🎯 全球直连"}
-    ],
-    "rules": [
-      { "outbound": "any", "server": "defaultDns", "disable_cache": true },
-      { "clash_mode": "direct", "server": "localDns" },
-      { "clash_mode": "global", "server": "proxyDns" },
-      { "rule_set": "geosite-cn", "server": "localDns" },
-      { "rule_set": "geosite-geolocation-!cn", "server": "proxyDns" }
-    ],
-    "final": "localDns",
-    "strategy": "ipv4_only"
-  },
+ "dns": {
+  "servers": [
+    {
+      "tag": "proxyDns",
+      "address": "https://dns.google/dns-query",
+      "address_resolver": "defaultDns",
+      "address_strategy": "ipv4_only",
+      "detour": "🚀 节点选择"
+    },
+    {
+      "tag": "localDns",
+      "address": "223.5.5.5",
+      "address_resolver": "defaultDns",
+      "address_strategy": "ipv4_only",
+      "detour": "🎯 全球直连"
+    },
+    {
+      "tag": "defaultDns",
+      "address": "223.5.5.5",
+      "address_strategy": "ipv4_only",
+      "detour": "🎯 全球直连"
+    }
+  ],
+  "rules": [
+    {
+      "outbound": "any",
+      "server": "defaultDns",
+      "disable_cache": true
+    },
+    {
+      "clash_mode": "direct",
+      "server": "localDns"
+    },
+    {
+      "clash_mode": "global",
+      "server": "proxyDns"
+    },
+    {
+      "rule_set": "geosite-geolocation-cn",
+      "server": "localDns"
+    },
+    {
+      "type": "logical",
+      "mode": "and",
+      "rules": [
+        {
+          "rule_set": "geosite-geolocation-!cn",
+          "invert": true
+        },
+        {
+          "rule_set": "geoip-cn"
+        }
+      ],
+      "server": "proxyDns",
+      "client_subnet": "114.114.114.114/24"
+    }
+  ],
+  "final": "localDns"
+},
+
 
 "inbounds": [
   {
-    "type": "tun",
-    "address": "172.19.0.1/30",
-    "mtu": 9000,
-    "auto_route": true
+      "type": "tun",
+      "inet4_address": "172.19.0.1/30",
+      "inet6_address": "fdfe:dcba:9876::1/126",
+      "auto_route": true,
+      "strict_route": false
   }
 ],
 
@@ -95,8 +144,9 @@
     { "tag": "geosite-apple", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/apple.srs", "download_detour": "🚀 节点选择" },
     { "tag": "geosite-microsoft", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/microsoft.srs", "download_detour": "🚀 节点选择" },
     { "tag": "geosite-onedrive", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/onedrive.srs", "download_detour": "🚀 节点选择" },
-    { "tag": "geosite-geolocation-!cn", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs", "download_detour": "🚀 节点选择" },
-    { "tag": "geosite-cn", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs", "download_detour": "🚀 节点选择" },
+    { "tag": "geosite-geolocation-!cn", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-!cn.srs", "download_detour": "🚀 节点选择" },
+        { "tag": "geosite-geolocation-cn", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs" },
+    { "tag": "geosite-cn", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs", "download_detour": "🚀 节点选择" },
     { "tag": "geosite-private", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs", "download_detour": "🚀 节点选择" },
           
     { "tag": "geoip-google", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs", "download_detour": "🚀 节点选择" },
