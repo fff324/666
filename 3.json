@@ -80,7 +80,7 @@
   {
     "type": "tun",
     "address": "192.168.8.1/30",
-  "exclude-interface": "docker0",  
+  "exclude_interface": ["docker0"],  
         "route_exclude_address": "172.20.0.0/24",
     "mtu": 9000,
     "auto_route": true,
