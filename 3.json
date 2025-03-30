@@ -79,7 +79,7 @@
  "inbounds": [
   {
     "type": "tun",
-    "address": "172.19.0.1/30",
+    "address": "192.168.8.1/30",
     "mtu": 9000,
     "auto_route": true,
     "auto_redirect": true,
