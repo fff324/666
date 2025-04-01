@@ -1,5 +1,10 @@
-DOMAIN,www.msftconnecttest.com,no-solve
-DOMAIN,www.msftncsi.com,no-solve
+DOMAIN-SUFFIX,142753.xyz
+DOMAIN-SUFFIX,dns.google
+DOMAIN-SUFFIX,doh.opendns.com
+DOMAIN-SUFFIX,dns.quad9.net
+DOMAIN-SUFFIX,dns.142753.xyz
+DOMAIN-SUFFIX,dns-unfiltered.adguard.com
+
 
 
 
