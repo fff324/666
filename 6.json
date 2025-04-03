@@ -401,9 +401,9 @@
         "outbound": "广告拦截"
       },
       {
-        "rule_set":  [
-          "geosite-youtube",
+        "rule_set": [
           "PikPak",
+          "geosite-youtube"
         ],
         "outbound": "国外媒体"
       },
