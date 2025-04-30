@@ -11,30 +11,53 @@
     }
   },
 
-  "dns": {
-    "servers": [
-      {
-        "type": "https",
-        "tag": "proxyDns",
-        "server": "dns.google",
-        "path": "/dns-query",
-        "strategy": "ipv4_only"
-      },
-      {
-        "type": "udp",
-        "tag": "localDns",
-        "server": "223.5.5.5",
-        "strategy": "ipv4_only"
-      },
-      {
-        "type": "udp",
-        "tag": "defaultDns",
-        "server": "223.5.5.5",
-        "strategy": "ipv4_only"
-      }
-    ],
-    "strategy": "ipv4_only"
-  },
+ "dns": {
+   "servers": [
+-    {
+-      "type": "https",
+-      "tag": "proxyDns",
+-      "server": "dns.google",
+-      "path": "/dns-query",
+-      "strategy": "ipv4_only"
+-    },
++    {
++      "type": "https",
++      "tag": "proxyDns",
++      "server": "dns.google",
++      "port": 443,
++      "path": "/dns-query",
++      "strategy": "ipv4_only"
++    },
+-    {
+-      "type": "udp",
+-      "tag": "localDns",
+-      "server": "223.5.5.5",
+-      "strategy": "ipv4_only"
+-    },
++    {
++      "type": "udp",
++      "tag": "localDns",
++      "server": "223.5.5.5",
++      "port": 53,
++      "strategy": "ipv4_only"
++    },
+-    {
+-      "type": "udp",
+-      "tag": "defaultDns",
+-      "server": "223.5.5.5",
+-      "strategy": "ipv4_only"
+-    }
++    {
++      "type": "udp",
++      "tag": "defaultDns",
++      "server": "223.5.5.5",
++      "port": 53,
++      "strategy": "ipv4_only"
++    }
+   ],
+   "strategy": "ipv4_only"
+ },
+
 
   "inbounds": [
     {
