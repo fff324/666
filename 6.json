@@ -269,7 +269,7 @@
       "tag": "广告拦截",
       "type": "selector",
       "outbounds": [
-        "reject",
+        "block",
         "国内流量",
         "节点选择"
       ]
@@ -338,8 +338,8 @@
       ]
     },
     {
-      "tag": "reject",
-      "type": "reject"
+      "tag": "block",
+      "type": "block"
     },
     {
       "tag": "全球直连",
