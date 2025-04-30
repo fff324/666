@@ -64,7 +64,8 @@
       "auto_detect_interface": true,
       "final": "🐠 漏网之鱼",
   "rules": [
-    { "type": "logical", "mode": "or", "rules": [{ "port": 53 }, { "protocol": "dns" }],"action": "dns" },
+    { "type": "logical", "mode": "or", "rules": [{ "port": 53 }, { "protocol": "dns" }],  "action": "resolve",
+  "domain_resolver": "defaultDns" },
     { "clash_mode": "direct", "outbound": "🎯 全球直连" },
     { "clash_mode": "global", "outbound": "GLOBAL" },
     { "domain": ["clash.razord.top", "yacd.metacubex.one", "yacd.haishan.me", "d.metacubex.one"], "outbound": "🎯 全球直连" },
