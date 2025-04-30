@@ -269,7 +269,7 @@
       "tag": "广告拦截",
       "type": "selector",
       "outbounds": [
-        "block",
+        "reject",
         "国内流量",
         "节点选择"
       ]
@@ -338,8 +338,8 @@
       ]
     },
     {
-      "tag": "block",
-      "type": "block"
+      "tag": "reject",
+      "type": "reject"
     },
     {
       "tag": "全球直连",
@@ -365,7 +365,7 @@
         ]
       },
       {
-        "outbound": "国外流量",
+        "outbound": ✈️手动选择",
         "domain_suffix": [
           "142753.xyz"
         ]
