@@ -1,1 +1,49 @@
-dmxlc3M6Ly9hZGFjMjI2OC1hZTU2LTQyY2YtOTYzYy1iNWZjMTE2YWRmNThAMTcyLjY3LjY5LjIzNjoyMDk2P2VuY3J5cHRpb249bm9uZSZzZWN1cml0eT10bHMmc25pPWJFQXQuTUlSYWNsRVRheGJpVFMuVG9wLiZmcD1jaHJvbWUmdHlwZT13cyZob3N0PWJFQXQuTUlSYWNsRVRheGJpVFMuVG9wLiZwYXRoPSUyRjIwOTYlMkYlNDBWUmF5eU5HdnBuIyUyMCU3QyUyMCVFMiVBQyU4NyVFRiVCOCU4RiUyMDIuNk1CJTJGcw0K
+# Shadowrocket: Auto-updating ruleset + proxy groups
+[General]
+fallback-dns-server = 223.5.5.5,1.1.1.1
+bypass-system = true
+skip-proxy = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, localhost, *.local, captive.apple.com
+tun-excluded-routes = 10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12, 192.0.0.0/24, 192.0.2.0/24, 192.88.99.0/24, 192.168.0.0/16, 198.51.100.0/24, 203.0.113.0/24, 224.0.0.0/4, 255.255.255.255/32, 239.255.255.250/32
+dns-server = https://doh.pub/dns-query,https://dns.alidns.com/dns-query,tls://dns.alidns.com,https://1.1.1.1/dns-query
+ipv6 = false
+prefer-ipv6 = false
+dns-fallback-system = false
+dns-direct-system = false
+icmp-auto-reply = true
+always-reject-url-rewrite = false
+private-ip-answer = true
+dns-direct-fallback-proxy = true
+update-url = https://your.domain.com/shadowrocket.conf
+
+[Proxy Group]
+非一云 = url-test,SUB.142753.XYZ,use=true,interval=600,tolerance=100,timeout=5,url=http://www.gstatic.com/generate_204,policy-regex-filter=^(?!.*一云).*
+一云 = url-test,SUB.142753.XYZ,use=true,interval=600,tolerance=100,timeout=5,url=http://www.gstatic.com/generate_204,policy-regex-filter=.*一云.*
+♻ ALL = url-test,SUB.142753.XYZ,use=true,url=http://www.gstatic.com/generate_204,policy-regex-filter=.*,timeout=5,tolerance=100,interval=600
+
+[Rule Set]
+private = https://cdn.jsdelivr.net/gh/Loyalsoldier/surge-rules@release/private.txt,tag=private,type=domain-set,update-interval=86400
+icloud = https://cdn.jsdelivr.net/gh/Loyalsoldier/surge-rules@release/icloud.txt,tag=icloud,type=domain-set,update-interval=86400
+apple = https://cdn.jsdelivr.net/gh/Loyalsoldier/surge-rules@release/apple.txt,tag=apple,type=domain-set,update-interval=86400
+google = https://cdn.jsdelivr.net/gh/Loyalsoldier/surge-rules@release/google.txt,tag=google,type=domain-set,update-interval=86400
+proxy = https://cdn.jsdelivr.net/gh/Loyalsoldier/surge-rules@release/proxy.txt,tag=proxy,type=domain-set,update-interval=86400
+direct = https://cdn.jsdelivr.net/gh/Loyalsoldier/surge-rules@release/direct.txt,tag=direct,type=domain-set,update-interval=86400
+telegramcidr = https://cdn.jsdelivr.net/gh/Loyalsoldier/surge-rules@release/telegramcidr.txt,tag=telegramcidr,type=rule-set,update-interval=86400
+cncidr = https://cdn.jsdelivr.net/gh/Loyalsoldier/surge-rules@release/cncidr.txt,tag=cncidr,type=rule-set,update-interval=86400
+LAN = https://cdn.jsdelivr.net/gh/Loyalsoldier/surge-rules@release/lan.txt,tag=LAN,type=rule-set,update-interval=86400
+SYSTEM = https://cdn.jsdelivr.net/gh/Loyalsoldier/surge-rules@release/system.txt,tag=SYSTEM,type=rule-set,update-interval=86400
+
+[Rule]
+RULE-SET,private,DIRECT
+RULE-SET,SYSTEM,DIRECT
+RULE-SET,icloud,DIRECT
+RULE-SET,apple,DIRECT
+RULE-SET,google,DIRECT
+RULE-SET,proxy,♻ ALL,force-remote-dns
+RULE-SET,direct,DIRECT
+RULE-SET,telegramcidr,♻ ALL
+RULE-SET,cncidr,DIRECT
+RULE-SET,LAN,DIRECT
+FINAL,♻ ALL,DNS-FAILED
+
+[MITM]
+enable = false
