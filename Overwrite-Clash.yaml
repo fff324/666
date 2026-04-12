@@ -12,6 +12,8 @@ proxy-providers:
     override:
       skip-cert-verify: true
       udp: true
+proxies:
+  - {"name":"自有美国落地","dialer-proxy":"链式","type":"ss","server":"107.173.154.150","port":46389,"cipher":"aes-256-gcm","password":"aTVhd2pWTjc5MnhXcVJlWFUxbmFvNVRzYmRydkZZdEs=","udp":true}
 
 proxy-groups-anchor:
   Strategy-Group: &sg {
