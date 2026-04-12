@@ -8,7 +8,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 300
-      url: http://107.173.154.150:8080/ping
+      url: http://www.gstatic.com/generate_204
     override:
       skip-cert-verify: true
       udp: true
